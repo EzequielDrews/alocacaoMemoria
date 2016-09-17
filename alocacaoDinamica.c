@@ -1,4 +1,5 @@
 #include<stdio.h>
+#include<malloc.h>
 
 main()
 {
@@ -22,8 +23,29 @@ main()
 	//exibe o conteudo da memoria alocada
 	printf("O conteudo da memoria alocada e: %s\n", memoria_alocada);
 	
+	//aloca a quantidade de memoria solicitada (100 x char);
+	//e inicializa o ponteiro com a posicao da memoria
+	memoria_alocada = realloc (memoria_alocada, 100 * sizeof(char));
+	//se o ponteiro foi inicializado com o valor nulo
+	if(memoria_alocada == NULL)
+	{
+		//exibe mensagem de erro
+		printf("Não foi possivel alocar a memoria desejada!\n");
+	}
+	//se o ponteiro nao for nulo
+	else
+	{
+		//transfere a mensagem para a memoria alocada
+		strcpy(memoria_alocada, "Quantidade de memoria alocada alterada!\n");
+	}
+	//exibe o conteudo da memoria alocada
+	printf("O conteudo da memoria alocada e: %s\n", memoria_alocada);
+
+	
 	//libera a memoria alocada
 	free(memoria_alocada);
+	
+	
 	
 	//retorna 0 
 	return 0;
